@@ -1,8 +1,14 @@
 # Echo server program
 import socket
+import json
 
-HOST = '192.168.86.24'                 # Symbolic name meaning all available interfaces
-PORT = 50007                           # Arbitrary non-privileged port
+with open("code/ip.json") as infile:
+    ip = json.load(infile)
+
+HOST = ip["desktop"]["ip"]                 # Symbolic name meaning all available interfaces
+PORT = ip["desktop"]["port"]               # Arbitrary non-privileged port
+
+print(HOST + ":" + PORT)
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
@@ -16,6 +22,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         print('Connected by', addr)
         while True:
             msg = conn.recv(1024).decode()
-            print(msg)
+            if msg != "":
+                print(msg)
+
+                
             # if not data: break
             # conn.sendall(data)
