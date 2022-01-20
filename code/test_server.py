@@ -2,13 +2,17 @@
 import socket
 import json
 
-with open("code/ip.json") as infile:
-    ip = json.load(infile)
+# with open("code/ip.json") as infile:
+#     ip = json.load(infile)
 
-NAME = socket.gethostname()
+# NAME = socket.gethostname()
 
-HOST = ip[NAME]["ip"]                 # Symbolic name meaning all available interfaces
-PORT = ip[NAME]["port"]               # Arbitrary non-privileged port
+# HOST = ip[NAME]["ip"]
+# PORT = ip[NAME]["port"]
+
+HOST = socket.gethostbyname(socket.gethostname())
+# HOST = input("Please specify Host IP address (ex. 127.0.0.1): ") 
+PORT = 50007
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
