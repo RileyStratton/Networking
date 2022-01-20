@@ -5,10 +5,10 @@ import json
 with open("code/ip.json") as infile:
     ip = json.load(infile)
 
-HOST = ip["desktop"]["ip"]                 # Symbolic name meaning all available interfaces
-PORT = ip["desktop"]["port"]               # Arbitrary non-privileged port
+NAME = socket.gethostname()
 
-print(HOST + ":" + str(PORT))
+HOST = ip[NAME]["ip"]                 # Symbolic name meaning all available interfaces
+PORT = ip[NAME]["port"]               # Arbitrary non-privileged port
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
