@@ -10,7 +10,8 @@ PORT = ip["desktop"]["port"]              # The same port as used by the server
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
-    msg = input("Message: ")
-    s.sendall(msg.encode())
+    while True:
+        msg = input("Message: ")
+        s.sendall(msg.encode())
 #     data = s.recv(1024)
 # print('Received', repr(data))
