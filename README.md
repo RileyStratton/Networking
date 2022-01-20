@@ -4,14 +4,6 @@
 ## Overview
 In order to gain a greater understanding of how computers communicate with each other, I created a program that allows two computers to send messages back and forth. This using IPv4 addresses ports. 
 
-{Provide a description the networking program that you wrote. Describe how to use your software.  If you did Client/Server, then you will need to describe how to start both.}
-
-{Describe your purpose for writing this software.}
-
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running (you will need to show two pieces of software running and communicating with each other) and a walkthrough of the code.}
-
-[Software Demo Video](http://youtube.link.goes.here)
-
 ## Network Communication
 While I plan to implement this in a peer-to-peer format, this app still using a server-client relationship. It uses TCP for increased reliability on port 50007. Messages are inherently strings, which are encoded as bytes and then decoded as bytes when the message is received.
 
@@ -29,3 +21,4 @@ While I plan to implement this in a peer-to-peer format, this app still using a 
 ## Future Work
 * Implement a TKinter GUI
 * Loop the program so messages can be sent back and forth without delay
+* Update readme with more info (Documents/network_readme.md)
