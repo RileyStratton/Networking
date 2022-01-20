@@ -5,7 +5,7 @@
 In order to gain a greater understanding of how computers communicate with each other, I created a program that allows two computers to send messages back and forth. This using IPv4 addresses ports. 
 
 ## Network Communication
-While I plan to implement this in a peer-to-peer format, this app still using a server-client relationship. It uses TCP for increased reliability on port 50007. Messages are inherently strings, which are encoded as bytes and then decoded as bytes when the message is received.
+While I plan to implement this in a peer-to-peer format, this app still using a server-client relationship. It uses TCP for increased reliability on port 50007. Messages are inherently strings, which are encoded as bytes, sent, and then decoded as a string when the message is received.
 
 ## Development Environment
 * __Visual Studio Code (IDE):__ An IDE with great support for Python.
