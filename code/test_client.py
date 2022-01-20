@@ -6,8 +6,9 @@ PORT = int(input("Please specify server port (ex. 50007): "))             # The 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
+    print("Type your message and hit enter to send it to the host!")
     while True:
-        msg = input("Message: ")
+        msg = input("")
         s.sendall(msg.encode())
 #     data = s.recv(1024)
 # print('Received', repr(data))
