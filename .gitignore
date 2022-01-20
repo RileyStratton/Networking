@@ -1,3 +1,8 @@
+# Custom
+ip.json
+work_log.txt
+code/practice/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
