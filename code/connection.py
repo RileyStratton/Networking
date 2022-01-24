@@ -5,14 +5,20 @@ from connection_gui import ConnectionGUI
 
 class Connection():
     def __init__(self):
-        self.connection_gui = ConnectionGUI()
-        connection_type = self.connection_gui.input_connection_type()
-        self.connection_gui.input_connection_ip_port(connection_type)
+        # self.connection_gui = ConnectionGUI()
+        # connection_type = self.connection_gui.input_connection_type()
+        # self.connection_gui.input_connection_ip_port(connection_type)
+        self.choice = input("Start or connect? ").lower()
+        if self.choice == "start": 
+            self.peer_start()
+        elif self.choice == "connect": 
+            self.peer_connect()
+
 
 
     def peer_start(self):
-        HOST = socket.gethostbyname(socket.gethostname())
-        # HOST = input("Please specify Host IP address (ex. 127.0.0.1): ") 
+        # HOST = socket.gethostbyname(socket.gethostname())
+        HOST = input("Please specify Host IP address (ex. 127.0.0.1): ") 
         PORT = 50007
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.sock:
@@ -63,3 +69,6 @@ class Connection():
 
     def get_previous_address(self, self_or_peer):
         pass
+
+
+connection = Connection()
