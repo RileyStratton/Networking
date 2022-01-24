@@ -1,19 +1,19 @@
 # Echo client program
 import socket
-# import json
+import json
 
-# def save_address(socket, self_or_peer):
-#     if self_or_peer.lower() == "self": addr = socket.getsockname()
-#     elif self_or_peer.lower() == "peer": addr = socket.getpeername()
+def save_address(socket, self_or_peer):
+    if self_or_peer.lower() == "self": addr = socket.getsockname()
+    elif self_or_peer.lower() == "peer": addr = socket.getpeername()
 
-#     with open("code/ip.json", "+") as infile:
-#         ip = json.load(infile)
+    with open("code/ip.json", "+") as infile:
+        ip = json.load(infile)
 
-#         ip["Previous"+self_or_peer.title()]={
-#             "ip":addr[0],
-#             "port":addr[1]}
+        ip["previous_"+self_or_peer.lower()]={
+            "ip":addr[0],
+            "port":addr[1]}
 
-#         json.dump(ip, infile, indent=4)
+        json.dump(ip, infile, indent=4)
 
 
 HOST = input("Please specify Host IP address (ex. 127.0.0.1): ")     # The remote host
