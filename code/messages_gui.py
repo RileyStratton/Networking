@@ -1,0 +1,2 @@
+class MessagesGUI():
+    pass
