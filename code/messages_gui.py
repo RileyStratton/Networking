@@ -1,2 +1,6 @@
+from tkinter import *
+from tkinter import ttk
+
 class MessagesGUI():
-    pass
+    def __init__(self):
+        pass

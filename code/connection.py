@@ -1,75 +1,69 @@
-import socket
 import json
+import socket
 
 from connection_gui import ConnectionGUI
+from messages import Messages
 
 class Connection():
     def __init__(self):
-        # self.connection_gui = ConnectionGUI()
-        # connection_type = self.connection_gui.input_connection_type()
-        # self.connection_gui.input_connection_ip_port(connection_type)
-        self.choice = input("Start or connect? ").lower()
-        if self.choice == "start": 
+        self.connection_gui = ConnectionGUI()
+        self.session_type = self.connection_gui.input_session_type()
+        self.session_addr = self.connection_gui.input_session_ip_port()
+        self.ip = self.session_addr[0]
+        self.port = self.session_addr[1]
+
+        if self.session_type == "start": 
             self.peer_start()
-        elif self.choice == "connect": 
+        elif self.session_type == "connect": 
             self.peer_connect()
 
-
-
     def peer_start(self):
-        HOST = socket.gethostbyname(socket.gethostname())
-        # HOST = input("Please specify Host IP address (ex. 127.0.0.1): ") 
-        PORT = 50007
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as unconnected_sock:
+            unconnected_sock.bind((self.ip, self.port))
 
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.sock:
-            self.sock.bind((HOST, PORT))
+            print(f"Session started at {self.ip}:{self.port}")
 
-            print(f"Server started on {HOST}:{PORT}")
+            unconnected_sock.listen(1)
+            
+            self.sock, self.addr = unconnected_sock.accept()
+            with self.sock:
+                self.save_addresses()
+                
+                self.messages = Messages(self.sock)
 
-            self.sock.listen(1)
-            self.conn, self.addr = self.sock.accept()
-            with self.conn:
-                self.save_addresses(self.conn)
-                print(f"Client connected from {self.addr[0]}:{self.addr[1]}")
-                while True:
-                    msg = self.conn.recv(1024).decode()
-                    if msg != "":
-                        print(msg)
+                # Beta Test
+                # while True:
+                #     msg = self.conn.recv(1024).decode()
+                #     if msg != "":
+                #         print(msg)
 
     def peer_connect(self):
-        HOST = input("Please specify Host IP address (ex. 127.0.0.1): ")     # The remote host
-        # PORT = int(input("Please specify Host port (ex. 50007): "))
-        PORT = 50007
-
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.sock:
-            self.sock.connect((HOST, PORT))
-            self.save_addresses(self.sock)
+            self.sock.connect((self.ip, self.port))
+            self.save_addresses()
 
-            print("Type your message and hit enter to send it to the host!")
-            while True:
-                msg = input("")
-                self.sock.sendall(msg.encode())
+            self.messages = Messages(self.sock)
 
-    def save_addresses(self, sock_or_conn):
-        self_address = sock_or_conn.getsockname()
-        peer_address = sock_or_conn.getpeername()
+            # Beta Test
+            # print("Type your message and hit enter to send it to the host!")
+            # while True:
+            #     msg = input("")
+            #     self.sock.sendall(msg.encode())
+
+    def save_addresses(self):
+        addr_self = self.sock.getsockname()
+        addr_peer = self.sock.getpeername()
 
         with open("code/addresses.json", "r") as infile:
             addresses = json.load(infile)
 
         addresses["previous_self"]={
-            "ip":self_address[0],
-            "port":self_address[1]}
+            "ip":addr_self[0],
+            "port":addr_self[1]}
 
         addresses["previous_peer"]={
-            "ip":peer_address[0],
-            "port":peer_address[1]}
+            "ip":addr_peer[0],
+            "port":addr_peer[1]}
 
         with open("code/addresses.json", "w") as outfile:
             json.dump(addresses, outfile, indent=4)
-
-    def get_previous_address(self, self_or_peer):
-        pass
-
-
-connection = Connection()
