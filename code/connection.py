@@ -51,11 +51,11 @@ class Connection():
         with open("code/addresses.json", "+") as infile:
             addresses = json.load(infile)
 
-            addresses["previous_self"()]={
+            addresses["previous_self"]={
                 "ip":self_address[0],
                 "port":self_address[1]}
 
-            addresses["previous_peer"()]={
+            addresses["previous_peer"]={
                 "ip":peer_address[0],
                 "port":peer_address[1]}
 
