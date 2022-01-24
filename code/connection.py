@@ -17,8 +17,8 @@ class Connection():
 
 
     def peer_start(self):
-        # HOST = socket.gethostbyname(socket.gethostname())
-        HOST = input("Please specify Host IP address (ex. 127.0.0.1): ") 
+        HOST = socket.gethostbyname(socket.gethostname())
+        # HOST = input("Please specify Host IP address (ex. 127.0.0.1): ") 
         PORT = 50007
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.sock:
@@ -29,7 +29,7 @@ class Connection():
             self.sock.listen(1)
             self.conn, self.addr = self.sock.accept()
             with self.conn:
-                self.save_addresses()
+                self.save_addresses(self.conn)
                 print(f"Client connected from {self.addr[0]}:{self.addr[1]}")
                 while True:
                     msg = self.conn.recv(1024).decode()
@@ -43,16 +43,16 @@ class Connection():
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.sock:
             self.sock.connect((HOST, PORT))
-            self.save_addresses()
+            self.save_addresses(self.sock)
 
             print("Type your message and hit enter to send it to the host!")
             while True:
                 msg = input("")
                 self.sock.sendall(msg.encode())
 
-    def save_addresses(self):
-        self_address = self.sock.getsockname()
-        peer_address = self.sock.getpeername()
+    def save_addresses(self, sock_or_conn):
+        self_address = sock_or_conn.getsockname()
+        peer_address = sock_or_conn.getpeername()
 
         with open("code/addresses.json", "r") as infile:
             addresses = json.load(infile)
