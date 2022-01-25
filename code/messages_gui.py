@@ -18,7 +18,6 @@ class MessagesGUI():
 
         self.send_bar = ttk.Entry(self.screen, width=60)
         self.send_bar.pack(side=BOTTOM)
-        self.send_bar.insert(0, "Type your message and press enter to send!")
 
         self.scrollbar = Scrollbar(self.screen)
         self.scrollbar.pack(side= RIGHT, fill=Y)
