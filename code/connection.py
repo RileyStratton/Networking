@@ -11,6 +11,7 @@ class Connection():
         self.session_addr = self.connection_gui.input_session_ip_port()
         self.ip = self.session_addr[0]
         self.port = self.session_addr[1]
+        self.username = self.session_addr[2]
 
         if self.session_type == "start": 
             self.peer_start()
@@ -21,7 +22,7 @@ class Connection():
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as unconnected_sock:
             unconnected_sock.bind((self.ip, self.port))
 
-            print(f"Session started at {self.ip}:{self.port}")
+            # print(f"Session started at {self.ip}:{self.port}")
 
             unconnected_sock.listen(1)
             
@@ -29,7 +30,7 @@ class Connection():
             with self.sock:
                 self.save_addresses()
                 
-                self.messages = Messages(self.sock)
+                self.messages = Messages(self.sock, self.username)
 
                 # Beta Test
                 # while True:
@@ -42,7 +43,7 @@ class Connection():
             self.sock.connect((self.ip, self.port))
             self.save_addresses()
 
-            self.messages = Messages(self.sock)
+            self.messages = Messages(self.sock, self.username)
 
             # Beta Test
             # print("Type your message and hit enter to send it to the host!")

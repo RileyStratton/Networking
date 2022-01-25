@@ -43,38 +43,46 @@ class ConnectionGUI():
             self.intro_label = ttk.Label(self.frame, text="Enter the IP address and port (default is 50007) of the peer device you are trying to connect to.")
         self.intro_label.grid(column=0, row=0, columnspan=2)
 
-        self.autofill_label = ttk.Label(self.frame, text="Autofill will attempt to autofill your info, but verify it for accuracy.")
-        self.autofill_label.grid(column=0, row=1, columnspan=2)
+        self.username_info = ttk.Label(self.frame, text="If you would like to hide your IP address, please enter a username.")
+        self.username_info.grid(column=0, row=1, columnspan=2)
+
+        self.autofill_label = ttk.Label(self.frame, text="Autofill will attempt to autofill your device's IP addres, but verify it for accuracy.")
+        self.autofill_label.grid(column=0, row=2, columnspan=2)
 
         self.previous_label = ttk.Label(self.frame, text="You can also use a previous entry if you have connected before.")
-        self.previous_label.grid(column=0, row=2, columnspan=2)
+        self.previous_label.grid(column=0, row=3, columnspan=2)
 
         self.ip_label = ttk.Label(self.frame, text="IP: ")
-        self.ip_label.grid(column=0, row=3, sticky="e")
+        self.ip_label.grid(column=0, row=4, sticky="e")
         self.ip_entry = ttk.Entry(self.frame)
-        self.ip_entry.grid(column=1, row=3, sticky="w")
+        self.ip_entry.grid(column=1, row=4, sticky="w")
         self.ip_entry.insert(0, "127.0.0.1")
 
         self.port_label = ttk.Label(self.frame, text="Port: ")
-        self.port_label.grid(column=0, row=4, sticky="e")
+        self.port_label.grid(column=0, row=5, sticky="e")
         self.port_entry = ttk.Entry(self.frame)
-        self.port_entry.grid(column=1, row=4, sticky="w")
+        self.port_entry.grid(column=1, row=5, sticky="w")
         self.port_entry.insert(0, 50007)
 
+        self.username_label = ttk.Label(self.frame, text="Username: ")
+        self.username_label.grid(column=0, row=6, sticky="e")
+        self.username_entry = ttk.Entry(self.frame)
+        self.username_entry.grid(column=1, row=6, sticky="w")
+
         self.previous_self_button = ttk.Button(self.frame, text="Previous Self", command=lambda: self.get_previous("self"))
-        self.previous_self_button.grid(column=0, row=5)
+        self.previous_self_button.grid(column=0, row=7)
 
         self.previous_peer_button = ttk.Button(self.frame, text="Previous Peer", command=lambda: self.get_previous("peer"))
-        self.previous_peer_button.grid(column=0, row=6)
+        self.previous_peer_button.grid(column=0, row=8)
     
         self.autofill_button = ttk.Button(self.frame, text="Autofill", command=lambda: self.autofill())
-        self.autofill_button.grid(column=1, row=5)
+        self.autofill_button.grid(column=1, row=7)
 
         self.submit_button = ttk.Button(self.frame, text="Submit", command=lambda: self.submit_ip_port())
-        self.submit_button.grid(column=1, row=6)
+        self.submit_button.grid(column=1, row=8)
 
         self.screen.mainloop()
-        return (self.ip, self.port)
+        return (self.ip, self.port, self.username)
         
     def get_previous(self, self_or_peer):
         with open("code/addresses.json", "r") as infile:
@@ -100,6 +108,7 @@ class ConnectionGUI():
     def submit_ip_port(self):
         self.ip = self.ip_entry.get()
         self.port = int(self.port_entry.get())
+        self.username = self.username_entry.get()
 
         # Input validation code coming soon!
 
