@@ -22,7 +22,7 @@ class Connection():
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as unconnected_sock:
             unconnected_sock.bind((self.ip, self.port))
 
-            print(f"Session started on {self.ip}:{self.port}.\nWaiting for peer to connect.")
+            # print(f"Session started on {self.ip}:{self.port}.\nWaiting for peer to connect.")
 
             unconnected_sock.listen(1)
             
