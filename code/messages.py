@@ -1,3 +1,6 @@
+import time
+
+from threading import Thread
 from messages_gui import MessagesGUI
 
 class Messages():
@@ -14,10 +17,16 @@ class Messages():
 
         self.message_list = []
 
+        t1 = Thread(target=self.receive_message)
+        t1.setDaemon(True)
+        t1.start()
+
         self.messages_gui = MessagesGUI(self)
 
     def receive_message(self):
-        self.message_list.append(self.sock.recv(1024).decode())
+        while True:
+            self.message_list.append(self.sock.recv(1024).decode())
+            time.sleep(.25)
 
     def send_message(self, message):
         msg = f"{self.username_self}: {message}"

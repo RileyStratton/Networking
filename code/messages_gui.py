@@ -32,7 +32,6 @@ class MessagesGUI():
         self.screen.mainloop()
 
     def display_messages(self):
-        self.messages.receive_message()
         self.message_box.delete(0, "end")
         for message in self.messages.message_list:
             self.message_box.insert(END, message)
