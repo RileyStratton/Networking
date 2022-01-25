@@ -55,6 +55,9 @@ class MessagesGUI():
 #         self.message_list.append(msg)
 #         print(self.message_list)
 
+#     def receive_message(self):
+#         pass
+
     
 # fake_messages = FakeMessages()
 # message_gui = MessagesGUI(fake_messages)

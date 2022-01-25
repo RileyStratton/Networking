@@ -113,3 +113,11 @@ class ConnectionGUI():
         # Input validation code coming soon!
 
         self.screen.destroy()
+
+    # def waiting_for_peer(self):
+    #     self.screen = Tk()
+    #     self.screen.title("Awaiting Connection")
+    #     self.frame = ttk.Frame(self.screen, padding=10)
+    #     self.text = ttk.Label(self.frame, text=f"Session started on {self.ip}:{self.port}.\nWaiting for peer to connect.")
+
+    #     self.screen.mainloop()
