@@ -14,7 +14,7 @@ class Messages():
 
         self.message_list = []
 
-        self.messages_gui = MessagesGUI()
+        self.messages_gui = MessagesGUI(self)
 
     def receive_messages(self):
         self.message_list.append(self.sock.recv(1024).decode())

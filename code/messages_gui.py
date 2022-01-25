@@ -5,7 +5,7 @@ class MessagesGUI():
     def __init__(self, messages):
         self.messages = messages
 
-        self.main_gui(self)
+        self.main_gui()
 
     def main_gui(self):
         self.screen = Tk()
