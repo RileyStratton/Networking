@@ -4,10 +4,10 @@
 ## Overview
 In order to gain a greater understanding of how computers communicate with each other, I created a program that allows two computers to send messages back and forth. 
 
+[Software Demo](https://youtu.be/7mRdbnCuT08)
+
 ## Network Communication
 This program communicates back and forth using a peer-to-peer networking module. It uses TCP for increased reliability, IPv4 addresses, and by default port 50007. Messages are inherently strings, which are encoded as bytes, sent, and then decoded as a string when the message is received. This program includes a GUI to make it easier to send and receive messages.
-
-[Video Demo](https://youtu.be/7mRdbnCuT08)
 
 ## Development Environment
 * __Visual Studio Code (IDE):__ An IDE with great support for Python.
