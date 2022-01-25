@@ -1,11 +1,13 @@
 # Networking
-###### Beta v0.1
+###### Release v1.0
  
 ## Overview
-In order to gain a greater understanding of how computers communicate with each other, I created a program that allows two computers to send messages back and forth. This using IPv4 addresses ports. 
+In order to gain a greater understanding of how computers communicate with each other, I created a program that allows two computers to send messages back and forth. 
 
 ## Network Communication
-While I plan to implement this in a peer-to-peer format, this app still using a server-client relationship. It uses TCP for increased reliability on port 50007. Messages are inherently strings, which are encoded as bytes, sent, and then decoded as a string when the message is received.
+This program communicates back and forth using a peer-to-peer networking module. It uses TCP for increased reliability, IPv4 addresses, and by default port 50007. Messages are inherently strings, which are encoded as bytes, sent, and then decoded as a string when the message is received. This program includes a GUI to make it easier to send and receive messages.
+
+[Video Demo](https://youtu.be/7mRdbnCuT08)
 
 ## Development Environment
 * __Visual Studio Code (IDE):__ An IDE with great support for Python.
@@ -19,6 +21,5 @@ While I plan to implement this in a peer-to-peer format, this app still using a 
 * [Python Documentation: Socket Library](https://docs.python.org/3.9/library/socket.html#)
 
 ## Future Work
-* Implement a TKinter GUI
-* Loop the program so messages can be sent back and forth without delay
-* Update readme with more info (Documents/network_readme.md)
+* Validate IP address and port before submitting
+* Make messages send on enter keypress
