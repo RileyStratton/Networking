@@ -1,4 +1,4 @@
-# Networking
+# Peer-to-Peer Messaging
 ###### Release v1.0
  
 ## Overview
